@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm Clock</title>
+</head>
+<body>
+<div style="border: 5px solid;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+padding: 10px;">
+    <h1>Alarm Clock</h1>
+
+<label for="alarmTime">Set Alarm Time: </label>
+<input type="time" id="alarmTime" required>
+<button onclick="setAlarm()">Set Alarm</button>
+
+</div>
+
+<script>
+function setAlarm() { 
+    const alarmInput = document.getElementById('alarmTime');
+    const alarmTime = alarmInput.value; 
+    const [hours, minutes] = alarmTime.split(':');
+    const currentTime = new Date();
+    const currentHours = currentTime.getHours();
+    const currentMinutes = currentTime.getMinutes();
+ 
+    let timetoAlarm = new Date();
+    timetoAlarm.setHours(hours);
+    timetoAlarm.setMinutes(minutes);
+    timetoAlarm.setSeconds(0);
+
+    const timeDifference = timetoAlarm - currentTime;
+
+    setTimeout(() => {
+        alert('Time to wake up!');
+    }, timeDifference);
+}
+</script>
+
+</body>
+</html>
